@@ -15,8 +15,7 @@ namespace winChatPk111
 {
     public partial class Form1 : Form
     {
-        string login;
-        string password;
+        
         public Form1()
         {
     
@@ -25,12 +24,19 @@ namespace winChatPk111
 
         private void button1_Click(object sender, EventArgs e)
         {
-            login = loginInput.Text;
-            password = passwordInput.Text;
+            User user = new User(loginInput.Text, passwordInput.Text);
+            string info = user.GetInfo();
+            Debug.WriteLine(info);
 
-            Debug.WriteLine(login);
-            Debug.WriteLine(password);
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string connection = "Server=localhost;User ID=pk111;Password=123456;Database=pk111";
+            MySqlConnection conn = new MySqlConnection(connection);
+            conn.Open();
+            Debug.WriteLine(conn.State);
         }
     }
     public class User
@@ -50,7 +56,7 @@ namespace winChatPk111
                 return age; 
             }
         }      
-        User(string _login, string _password)
+        public User(string _login, string _password)
         {
             login = _login;
             password = _password;
@@ -63,6 +69,10 @@ namespace winChatPk111
         public string GetName()
         {
             return name;
+        }
+        public string GetInfo()
+        {
+            return "login: " + login + " password: " + password;
         }
     }
 }
