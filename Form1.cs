@@ -27,16 +27,23 @@ namespace winChatPk111
             User user = new User(loginInput.Text, passwordInput.Text);
             string info = user.GetInfo();
             Debug.WriteLine(info);
-
-
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             string connection = "Server=localhost;User ID=pk111;Password=123456;Database=pk111";
             MySqlConnection conn = new MySqlConnection(connection);
-            conn.Open();
+            try
+            {
+                conn.Open();
+            } catch(MySqlException ex)
+            {
+
+            }
             Debug.WriteLine(conn.State);
+            if (conn.State != ConnectionState.Open)
+            {
+                button1.Enabled = false;
+            }
         }
     }
     public class User
