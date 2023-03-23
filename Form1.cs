@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
+﻿using MySqlConnector;
+using System;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySqlConnector;
 
 namespace winChatPk111
 {
     public partial class Form1 : Form
     {
-        
+
         public Form1()
         {
-    
+
             InitializeComponent();
         }
 
@@ -35,9 +28,14 @@ namespace winChatPk111
             try
             {
                 conn.Open();
-            } catch(MySqlException ex)
+            }
+            catch (MySqlException ex)
             {
-
+                Debug.WriteLine(ex.Number);
+                if (ex.Number == 1042)
+                {
+                    label3.Text = "Сервис временно недоступен";
+                }
             }
             Debug.WriteLine(conn.State);
             if (conn.State != ConnectionState.Open)
@@ -54,15 +52,15 @@ namespace winChatPk111
         int age;
         public int Age
         {
-            set 
+            set
             {
-                age = value; 
+                age = value;
             }
-            get 
-            { 
-                return age; 
+            get
+            {
+                return age;
             }
-        }      
+        }
         public User(string _login, string _password)
         {
             login = _login;
