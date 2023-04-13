@@ -16,7 +16,12 @@ namespace winChatPk111
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form1 frm1 = new Form1();
+            Application.Run(frm1);
+            if(frm1.isLoggedIn)
+            {
+                Application.Run(new Form2());
+            }
         }
     }
 }

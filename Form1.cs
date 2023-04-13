@@ -8,6 +8,8 @@ namespace winChatPk111
 {
     public partial class Form1 : Form
     {
+        //для закрытия формы
+        public bool isLoggedIn = false;
 
         public Form1()
         {
@@ -41,10 +43,9 @@ namespace winChatPk111
                 onlineCmd.Parameters.AddWithValue("id",User.Id);
                 onlineCmd.ExecuteNonQuery(); 
                 MySqlConn.CloseConn();
-                Form2 form2 = new Form2();
-                form2.Show();
-                //this.Close();
-                //UPDATE `users` SET `online`=true WHERE id=4
+                //для закрытия формы
+                this.Close();
+                isLoggedIn= true;
             }
             else
             {
