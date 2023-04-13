@@ -8,21 +8,22 @@ namespace winChatPk111
 {
     public partial class Form1 : Form
     {
-        //для закрытия формы
+        //переменная для того, чтобы закрыть form1 и открыть form2
         public bool isLoggedIn = false;
-
         public Form1()
         {
-
             InitializeComponent();
         }
-
+        //Обработка события "Нажатие на кнопку 'Вход'
         private void button1_Click(object sender, EventArgs e)
         {
+            //Вносим в класс User логин и пароль, которые
+            //пользователь написал в соответствующих полях
             User.UserLogin(loginInput.Text, passwordInput.Text);
+            //выводим информацио о пользователе для проверки
             string info = User.GetInfo();
             Debug.WriteLine(info);
-
+            //Готовим и выполняем запрос в БД, для получения пароля и id по введенному имени пользователя
             string loginString = "SELECT password, id FROM users WHERE nikname=@param ";
             MySqlCommand loginComm = new MySqlCommand(loginString, MySqlConn.GetConn());
 
@@ -32,7 +33,9 @@ namespace winChatPk111
             MySqlDataReader loginDataReader = loginComm.ExecuteReader();
             loginDataReader.Read();
             //Debug.WriteLine(user.GetLogin());
-
+            //Если в ответе на запрос есть записи и введенный пароль совпадает
+            //с паролем из БД, то пользователю в БД в поле online пишем true
+            //закрываем form1, открываем form2
             if (loginDataReader.HasRows && User.Comp(loginDataReader.GetString(0)))
             {
                 User.Id = loginDataReader.GetInt32(1);
@@ -47,7 +50,7 @@ namespace winChatPk111
                 this.Close();
                 isLoggedIn= true;
             }
-            else
+            else //если ответ не содержит записей или пароли не совпадают, то выводим сообщение
             {
                 label3.Text = "Пароли НЕ совпадают";
             }
@@ -56,6 +59,12 @@ namespace winChatPk111
         private void Form1_Load(object sender, EventArgs e)
         {
              
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form3 form3= new Form3();
+            form3.Show();
         }
     }
     

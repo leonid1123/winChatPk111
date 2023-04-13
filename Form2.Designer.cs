@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.msgBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -67,13 +67,13 @@
             this.listBox2.Size = new System.Drawing.Size(284, 352);
             this.listBox2.TabIndex = 2;
             // 
-            // textBox1
+            // msgBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(10, 449);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(839, 34);
-            this.textBox1.TabIndex = 3;
+            this.msgBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.msgBox.Location = new System.Drawing.Point(10, 449);
+            this.msgBox.Name = "msgBox";
+            this.msgBox.Size = new System.Drawing.Size(839, 34);
+            this.msgBox.TabIndex = 3;
             // 
             // button1
             // 
@@ -84,6 +84,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Изреч";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // timer1
             // 
@@ -96,7 +97,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 528);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.msgBox);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
@@ -113,7 +114,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox msgBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timer1;
     }

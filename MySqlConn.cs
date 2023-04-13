@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace winChatPk111
 {
+    //Статичный класс для подключения к БД
+    //метод GetConn() подключается к БД и возвращает подключение
+    //метод CloseConn() закрывает подключение к БД
     static public class MySqlConn
     {
         static string connStr = "Server=localhost;User ID=pk111;Password=123456;Database=pk111";
